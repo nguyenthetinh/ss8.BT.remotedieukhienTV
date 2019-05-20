@@ -10,31 +10,25 @@
         this.ma=function (ma) {
             this.ma=ma;
         };
-        this.chuyenkenh=function (tivi) {
-            if ( tivi.dangphat){
-                this.dangphat=this.ma;
-                console.log("da chuyen sang kenh :"+ this.dangphat)
-            }else {
-                console.log("kenh muon chuyen dang phat roi day")
-            }
+        this.chuyenkenh=function (tivi,kenh) {
+            tivi.dangphat=kenh;
+            console.log("da chuyen sang kenh:" + tivi.dangphat)
         };
         this.tangam=function (tivi) {
-            this.tt=tivi.ktamluong();
-            this.tt++;
-            console.log("am luong sau khi tang la: " +this.tt)
+            tivi.amluongHT++;
+            console.log("am luong sau khi tang la: " +tivi.amluongHT)
         };
         this.giamam=function (tivi) {
-            this.ii=tivi.ktamluong();
-            this.ii--;
-            console.log("am luong sau khi giam la: " +this.ii)
-        }
-        this.turnOff = function () {
-            this.trangthai = false;
-            console.log("Tat Tivi:" + this.trangthai)
-        }
-        this.turnOn = function () {
-            this.trangthai = true;
-            console.log("Bat Tivi:" + this.trangthai)
+            tivi.amluongHT--
+            console.log("am luong sau khi giam la: " +tivi.amluongHT)
+        };
+        this.turnOff = function (tivi) {
+            tivi.trangthai=false;
+            console.log("Tat Tivi:" + tivi.trangthai)
+        };
+        this.turnOn = function (tivi) {
+            tivi.trangthai = true;
+            console.log("Bat Tivi:" + tivi.trangthai)
         };
     };
     let Tivi=function (dangphat,amluongHT,trangthai) {
@@ -64,14 +58,12 @@
     };
     let remote=new Remote();
     let tivi=new Tivi(5,50,false);
-    tivi.turnOn();
-    tivi.chuyenkenhTV(7);
-    let kenh=remote.ma(3);
-    remote.chuyenkenh(tivi);
+    remote.turnOn(tivi);
+    remote.chuyenkenh(tivi,7);
     for (i=1 ;i<3 ;i++){
-        tivi.tangamTV()
+        remote.tangam(tivi);
     }
-    remote.turnOff()
+    remote.turnOff(tivi)
 
 </script>
 </body>
